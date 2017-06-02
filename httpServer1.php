@@ -1,15 +1,8 @@
 <?php
 $http = new swoole_http_server("127.0.0.1", 9501);
 $GLOBALS['filePool'] = [];
-require('SimpleSHM.class.php');
+//require('SimpleSHM.class.php');
 $http->on('request', function (swoole_http_request $request, swoole_http_response $response) {
-//	$response->end(var_export($request->header,true));
-//	$response->end(var_export($request->post,true));
-//	$response->end(var_export($request->get,true));
-//	$response->end(var_export($request->server,true));
-//	$response->end(var_export($request->cookie,true));
-//	$response->end(var_export($request->data,true));
-//	$response->end(var_export($request,true));
 	$posts = $request->post;
 	if(empty($posts)||!isset($posts['action'])) {
 		$response->end(json_encode(['res'=>-1,'data'=>'','msg'=>'']));
@@ -50,7 +43,6 @@ $http->on('request', function (swoole_http_request $request, swoole_http_respons
 		echo $msg;
 		$response->end(json_encode(['res'=>0,'data'=>'','msg'=>$msg]));
 	}
-//	var_dump($GLOBALS['filePool']);
 });
 //$http->on('close', function(){
 //	echo 'closed.'.PHP_EOL;
