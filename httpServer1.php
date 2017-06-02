@@ -30,7 +30,7 @@ $http->on('request', function (swoole_http_request $request, swoole_http_respons
 			$response->end(json_encode(['res'=>-1,'data'=>'','msg'=>'content empty']));
 			return;
 		}
-		if(false) {
+		if(!empty($posts['filePool'])) {
 			$handle = $item['file_handle'];
 			fwrite($handle, $posts['content'] . PHP_EOL);
 		} else {
